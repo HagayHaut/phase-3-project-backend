@@ -30,8 +30,9 @@ class ApplicationController < Sinatra::Base
     category = Category.find_by(name: params[:category])
     task = Task.create(
       description: params[:description],
-      completed: params[:completed],
+      completed: false,
       due_by: params[:due_by],
+      reminder: params[:reminder],
       category: category
     )
     task.to_json
