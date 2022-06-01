@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/tasks' do 
-    Task.all.to_json(methods: :date_format)
+    Task.all.to_json(methods: [:date_format, :category])
   end
 
   get '/categories' do 
