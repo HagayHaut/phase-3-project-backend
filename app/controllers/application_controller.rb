@@ -4,28 +4,13 @@ class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
   # Add your routes here
-  get "/" do
-    { message: "Good luck with your project!" }.to_json
-  end
 
   get '/tasks' do 
     Task.all.to_json(methods: [:date_format, :category])
   end
 
-  get '/categories' do 
-    Category.all.to_json
-  end
-
   get '/tasks/:id' do 
     Task.find(params[:id]).to_json
-  end
-
-  get '/categories/:id' do 
-    Category.find(params[:id]).to_json
-  end
-
-  post '/categories' do
-    Category.create(name: params[:name]).to_json
   end
 
   post '/tasks' do 
@@ -37,7 +22,7 @@ class ApplicationController < Sinatra::Base
       reminder: params[:reminder],
       category: category
     )
-    task.to_json
+    task.to_json(methods: [:date_format, :category])
   end
 
   patch '/tasks/:id' do
