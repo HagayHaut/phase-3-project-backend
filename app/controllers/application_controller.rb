@@ -1,3 +1,5 @@
+require 'strftime'
+
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
@@ -7,7 +9,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/tasks' do 
-    Task.all.to_json
+    Task.all.to_json(methods: :date_format)
   end
 
   get '/categories' do 
