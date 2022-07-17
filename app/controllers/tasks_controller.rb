@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
 
-    get '/tasks' do 
+      get '/tasks' do 
         Task.all.to_json(methods: [:date_format, :category])
       end
     
